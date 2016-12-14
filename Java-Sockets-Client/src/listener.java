@@ -37,10 +37,13 @@ class listener implements Runnable {
         String testoDaServer = "";
         try {
             while ((testoDaServer = in.readLine()) != null) {
+                if(!testoDaServer.contains("/invite")){
                 System.out.println(testoDaServer);
+                }
                 if(testoDaServer.contains("You joined "))
                 {
-                    ClientTesto.groupChat=testoDaServer.substring(10,testoDaServer.length());
+                    ClientTesto.groupChat=testoDaServer.substring(11,testoDaServer.length());
+                    System.out.print(ClientTesto.groupChat+">");
                 }
                 //nel caso il testo ricevuto dal Server contiene "Bye." termina il Client
                 if (testoDaServer.contains("Bye.")) {

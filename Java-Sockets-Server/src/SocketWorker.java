@@ -78,42 +78,46 @@ class SocketWorker implements Runnable {
             }
             }
             //Manda lo stesso messaggio appena ricevuto con in aggiunta il "nome" del client
-                out.println("Server-->" + Nickname + ">> " + line);
+            out.println("Server-->" + Nickname + ">> " + line);
             //scrivi messaggio ricevuto su terminale
-                System.out.println(Nickname + ">> " + line);
-                }else
+            System.out.println(Nickname + ">> " + line);
+        }
+        else
+        {
+            if(line.equals("/quit"))
+            {
+                currentGroupChat="";
+                return;
+            }
+            if(line.contains("/invite"))
+            {
+                String nickname = line.substring(8,line.length());
+                for(int i=0;i<ServerTestoMultiThreaded.SocketList.size();i++)
+                {
+                    if(!ServerTestoMultiThreaded.SocketList.get(i).Nickname.equals(Nickname))
                     {
-                        if(line.equals("/quit"))
-                        {
-                            currentGroupChat="";
-                            return;
+                        if(!ServerTestoMultiThreaded.SocketList.get(i).currentGroupChat.equals(currentGroupChat) && ServerTestoMultiThreaded.SocketList.get(i).currentGroupChat.equals("")){
+                        ServerTestoMultiThreaded.SocketList.get(i).currentGroupChat = currentGroupChat;
+                        ServerTestoMultiThreaded.SocketList.get(i).sendMessage("You joined "+currentGroupChat);
                         }
-                        if(line.substring(0,7).equals("/invite"))
+                        else
                         {
-                            String nickname = line.substring(7,line.length());
-                            for(int i=0;i<ServerTestoMultiThreaded.SocketList.size();i++)
-                            {
-                                if(!ServerTestoMultiThreaded.SocketList.get(i).Nickname.equals(Nickname) && ServerTestoMultiThreaded.SocketList.get(i).currentGroupChat.equals(currentGroupChat) && ServerTestoMultiThreaded.SocketList.get(i).currentGroupChat.equals(""))
-                                {
-                                    ServerTestoMultiThreaded.SocketList.get(i).currentGroupChat = currentGroupChat;
-                                    ServerTestoMultiThreaded.SocketList.get(i).sendMessage("You joined "+currentGroupChat+" chat");
-                                }
-                                else
-                                {
-                                    sendMessage(nickname+" can't join in this groupchat");
-                                }
-                            }
+                        sendMessage(nickname+" can't join in this groupchat");
                         }
-                        for(int i=0;i<ServerTestoMultiThreaded.SocketList.size();i++)
-                            {
-                                if(!ServerTestoMultiThreaded.SocketList.get(i).Nickname.equals(Nickname) && ServerTestoMultiThreaded.SocketList.get(i).currentGroupChat.equals(currentGroupChat))
-                                {
-                                    ServerTestoMultiThreaded.SocketList.get(i).sendMessage(Nickname+">"+line);
-                                }
-                            }
-                        
                     }
+                    
                 }
+            }
+            for(int i=0;i<ServerTestoMultiThreaded.SocketList.size();i++)
+            {
+                if(!ServerTestoMultiThreaded.SocketList.get(i).Nickname.equals(Nickname) && ServerTestoMultiThreaded.SocketList.get(i).currentGroupChat.equals(currentGroupChat))
+                    {
+                        ServerTestoMultiThreaded.SocketList.get(i).sendMessage(Nickname+">"+line);
+                    }
+            }
+                        
+         }
+    }
                 
     
     
