@@ -29,9 +29,9 @@ Da nuova finestra di comando esguire il ```primo``` Client
 ```
 cd Documents\NetBeansProjects\Java-Sockets-Client\src
 java client-Testo localhost 1234
-join <nomegroupchat> //per entrare in una chat esistente o crearne una nuova```
-Da nuova finestra di comando esguire il ```secondo``` Client
+join <nomegroupchat> //per entrare in una chat esistente o crearne una nuova
 ```
+Da nuova finestra di comando esguire il ```secondo``` Client
 ```
 cd Documents\NetBeansProjects\Java-Sockets-Client\src
 java client-Testo localhost 1234
