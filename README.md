@@ -19,6 +19,23 @@ Lo scopo di questo progetto è di collegare 2 o più computer ad un server avvia
 tramite ip e porta, ci si collega a questo server tramite il client.
 C'è anche la possibilità di poter aggiungere uno username :D
 
+## Esempio usando uno stesso computer sia per eseguire Server che multipli Clients
+Da finestra di comando esguire il Server:
+```
+cd Documents\NetBeansProjects\Java-Sockets-Server\src
+java ServerTestoMultiThreaded 1234
+```
+Da nuova finestra di comando esguire il ```primo``` Client
+```
+cd Documents\NetBeansProjects\Java-Sockets-Client\src
+java client-Testo localhost 1234
+```
+Da nuova finestra di comando esguire il ```secondo``` Client
+```
+cd Documents\NetBeansProjects\Java-Sockets-Client\src
+java client-Testo localhost 1234
+```
+
 ##Versione Programma
 versione 1.0
 
