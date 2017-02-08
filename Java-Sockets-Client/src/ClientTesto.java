@@ -65,7 +65,7 @@ public class ClientTesto {
                 if(userInput.equals("/quit"))
                 {
                     groupChat="";
-               
+		}
                 System.out.println("Messaggio spedito al server: " + userInput);
                 System.out.print(groupChat+">"); //visualizza il prompt
             }
