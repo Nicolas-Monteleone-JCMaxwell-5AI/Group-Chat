@@ -76,7 +76,15 @@ class SocketWorker implements Runnable {
                 out.println("Joined to "+line.substring(6, line.length())+" successfully");
                 return;
             }
+              if(line.contains("/exit"){
+            try {
+            client.close();
+              System.out.println("connessione con client: " + client + " terminata!");
+            } catch (IOException e) {
+              System.out.println("Errore connessione con client: " + client);
             }
+            }
+                 }
             //Manda lo stesso messaggio appena ricevuto con in aggiunta il "nome" del client
             out.println("Server-->" + Nickname + ">> " + line);
             //scrivi messaggio ricevuto su terminale
